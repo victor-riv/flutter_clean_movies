@@ -3,6 +3,7 @@ import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
 
 import 'package:flutter_clean_movies/core/patch_simple_rest_api.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 ExampleLocator locator() => ExampleLocator();
 
@@ -27,7 +28,8 @@ class ExampleLocator implements Locator {
   UrlLauncher? urlLauncher = UrlLauncher();
 
   PatchSimpleRestApi api = PatchSimpleRestApi(
-      baseUrl: 'http://localhost:3001/'); // Points to Mockoon instance
+      baseUrl:
+          'https://api.themoviedb.org/3/movie/now_playing?api_key=${DotEnv().env['TMDB_API_KEY']}&language=en-US&page=1'); // Points to Mockoon instance
   // baseUrl: 'http://192.168.0.11:3001/'); //Points to Mockoon instance
 
   Repository repository = Repository();
