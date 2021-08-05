@@ -1,12 +1,19 @@
 import 'dart:convert';
 
+import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_movies/features/movie/bloc/movies_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 Future main() async {
   await dotenv.load(fileName: '.env');
-  runApp(new MaterialApp(title: "Clean Framework Movies", home: Home()));
+  runApp(new MaterialApp(
+      title: "Clean Framework Movies",
+      home: BlocProvider(
+        create: (context) => MoviesBloc(),
+        child: Home(),
+      )));
 }
 
 class Home extends StatelessWidget {
