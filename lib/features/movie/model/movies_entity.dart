@@ -1,25 +1,11 @@
 import 'package:clean_framework/clean_framework.dart';
 
-class MovieEntity extends Entity {
-  MovieEntity({
-    List<EntityFailure> errors = const [],
-  });
-
-  @override
-  List<Object> get props => [];
-
-  @override
-  merge({errors}) {
-    return MovieEntity(errors: errors ?? this.errors);
-  }
-}
-
 // ignore: slash_for_doc_comments
 /**
  * Those the following live here on in ViewModel?
  */
 
-class Movie {
+class MovieEntity extends Entity {
   final String posterPath;
   final bool adult;
   final String overview;
@@ -35,23 +21,91 @@ class Movie {
   final bool video;
   final int voteAverage;
 
-  Movie(
-      {required this.posterPath,
-      required this.adult,
-      required this.overview,
-      required this.releaseDate,
-      required this.genreIds,
-      required this.id,
-      required this.originalTitle,
-      required this.originalLanguage,
-      required this.title,
-      required this.backdropPath,
-      required this.popularity,
-      required this.voteCount,
-      required this.video,
-      required this.voteAverage});
+  MovieEntity(
+      {errors,
+      String? posterPath,
+      bool? adult,
+      String? overview,
+      String? releaseDate,
+      List<int>? genreIds,
+      int? id,
+      String? originalTitle,
+      String? originalLanguage,
+      String? title,
+      String? backdropPath,
+      int? popularity,
+      int? voteCount,
+      bool? video,
+      int? voteAverage})
+      : posterPath = posterPath ?? '',
+        adult = adult ?? false,
+        overview = overview ?? '',
+        releaseDate = releaseDate ?? '',
+        genreIds = genreIds ?? [],
+        id = 0,
+        originalTitle = originalTitle ?? '',
+        originalLanguage = originalLanguage ?? '',
+        title = title ?? '',
+        backdropPath = backdropPath ?? '',
+        popularity = popularity ?? 0,
+        voteCount = voteCount ?? 0,
+        video = video ?? false,
+        voteAverage = voteAverage ?? 0,
+        super(errors: errors ?? []);
 
-  Movie.fromJson(Map<String, dynamic> json)
+  @override
+  List<Object> get props => [
+        posterPath,
+        adult,
+        overview,
+        releaseDate,
+        genreIds,
+        id,
+        originalTitle,
+        originalLanguage,
+        title,
+        backdropPath,
+        popularity,
+        voteCount,
+        video,
+        voteAverage
+      ];
+
+  @override
+  merge(
+      {errors,
+      String? posterPath,
+      bool? adult,
+      String? overview,
+      String? releaseDate,
+      List<int>? genreIds,
+      int? id,
+      String? originalTitle,
+      String? originalLanguage,
+      String? title,
+      String? backdropPath,
+      int? popularity,
+      int? voteCount,
+      bool? video,
+      int? voteAverage}) {
+    return MovieEntity(
+        posterPath: posterPath ?? this.posterPath,
+        adult: adult ?? this.adult,
+        overview: overview ?? this.overview,
+        releaseDate: releaseDate ?? this.releaseDate,
+        genreIds: genreIds ?? this.genreIds,
+        id: id ?? this.id,
+        originalTitle: originalTitle ?? this.originalTitle,
+        originalLanguage: originalLanguage ?? this.originalLanguage,
+        title: title ?? this.title,
+        backdropPath: backdropPath ?? this.backdropPath,
+        popularity: popularity ?? this.popularity,
+        voteCount: voteCount ?? this.voteCount,
+        video: video ?? this.video,
+        voteAverage: voteAverage ?? this.voteAverage);
+  }
+
+  MovieEntity.fromJson(Map<String, dynamic> json)
       : posterPath = json['poster_path'] ?? '',
         adult = json['adult'] ?? false,
         overview = json['overview'] ?? '',

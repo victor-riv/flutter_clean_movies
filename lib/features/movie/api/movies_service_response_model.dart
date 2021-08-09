@@ -1,15 +1,13 @@
 import 'package:clean_framework/clean_framework_defaults.dart';
+import 'package:flutter_clean_movies/features/movie/model/movies_entity.dart';
 
 class MoviesServiceResponseModel extends JsonResponseModel {
-  final List movies;
-  final bool didSucceed;
+  final List<MovieEntity> moviesModelList;
 
-  MoviesServiceResponseModel({required this.movies, required this.didSucceed});
+  MoviesServiceResponseModel.fromJson(Map<String, dynamic> json)
+      : moviesModelList = List<MovieEntity>.from(
+          json['results']?.map((movie) => MovieEntity.fromJson(movie)),
+        );
 
-  @override
-  Map<String, dynamic> toJson() {
-    return {'movies': movies, 'didSucceed': didSucceed};
-  }
-
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [moviesModelList];
 }

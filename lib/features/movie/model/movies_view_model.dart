@@ -4,7 +4,8 @@ class MoviesViewModel extends ViewModel {
   final List? movies;
   final serviceStatus;
 
-  MoviesViewModel({this.movies, this.serviceStatus = ServiceStatus.unknown});
+  MoviesViewModel(
+      {this.movies = const [], this.serviceStatus = ServiceStatus.unknown});
   @override
   List<Object?> get props => [movies, serviceStatus];
 }

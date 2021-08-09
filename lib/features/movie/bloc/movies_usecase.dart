@@ -17,10 +17,12 @@ class MoviesUseCase extends UseCase {
       : _viewModelCallBack = viewModelCallBack;
 
   // What happens when this use case first gets created
-  void create() {
+  void create() async {
     _scope = ExampleLocator().repository.containsScope<MovieEntity>();
+    print('wtf');
     if (_scope == null) {
       final newMoviesEntity = MovieEntity();
+      print('after creating entity');
       _scope = ExampleLocator()
           .repository
           .create<MovieEntity>(newMoviesEntity, _notifySubscribers);
@@ -42,6 +44,7 @@ class MoviesUseCase extends UseCase {
   void loadMovies() {}
 
   MoviesViewModel buildViewModel(entity) {
-    return MoviesViewModel(movies: entity.movies);
+    print('am i here?');
+    return MoviesViewModel(movies: []);
   }
 }
