@@ -1,6 +1,18 @@
 import 'package:clean_framework/clean_framework.dart';
 
-class MoviesEntity extends Entity {}
+class MovieEntity extends Entity {
+  MovieEntity({
+    List<EntityFailure> errors = const [],
+  });
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  merge({errors}) {
+    return MovieEntity(errors: errors ?? this.errors);
+  }
+}
 
 // ignore: slash_for_doc_comments
 /**

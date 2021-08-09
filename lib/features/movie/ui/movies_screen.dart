@@ -1,6 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clean_movies/features/movie/model/movies_view_model.dart';
 
 class MoviesScreen extends Screen {

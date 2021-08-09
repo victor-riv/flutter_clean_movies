@@ -21,5 +21,6 @@ class MoviesBloc extends Bloc {
   @override
   void dispose() {
     loadMoviesPipe.dispose();
+    moviesViewModelPipe.dispose();
   }
 }
