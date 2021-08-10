@@ -1,5 +1,5 @@
 import 'package:clean_framework/clean_framework_defaults.dart';
-import 'package:flutter_clean_movies/features/movie/model/movies_entity.dart';
+import 'package:flutter_clean_movies/features/movie/model/movie_entity.dart';
 
 class MoviesServiceResponseModel extends JsonResponseModel {
   final List<MovieEntity> moviesModelList;

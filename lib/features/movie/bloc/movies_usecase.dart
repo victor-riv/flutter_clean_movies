@@ -1,6 +1,8 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
-import 'package:flutter_clean_movies/features/movie/model/movies_entity.dart';
+import 'package:flutter_clean_movies/features/movie/bloc/movies_service_adapter.dart';
+import 'package:flutter_clean_movies/features/movie/model/movie_entity.dart';
+import 'package:flutter_clean_movies/features/movie/model/movies_list_entity.dart';
 import 'package:flutter_clean_movies/features/movie/model/movies_view_model.dart';
 import 'package:flutter_clean_movies/locator.dart';
 
@@ -19,10 +21,9 @@ class MoviesUseCase extends UseCase {
   // What happens when this use case first gets created
   void create() async {
     _scope = ExampleLocator().repository.containsScope<MovieEntity>();
-    print('wtf');
     if (_scope == null) {
       final newMoviesEntity = MovieEntity();
-      print('after creating entity');
+
       _scope = ExampleLocator()
           .repository
           .create<MovieEntity>(newMoviesEntity, _notifySubscribers);
@@ -41,10 +42,16 @@ class MoviesUseCase extends UseCase {
   }
 
   // Logic to fetch movie from API, BUT going through the service adapter
-  void loadMovies() {}
+  void loadMovies() async {
+    print('Inside movie use case loadMovies');
+    final entity =
+        ExampleLocator().repository.get<MoviesEntityModelList>(_scope!);
+    await ExampleLocator()
+        .repository
+        .runServiceAdapter(_scope!, MoviesServiceAdapter());
+  }
 
   MoviesViewModel buildViewModel(entity) {
-    print('am i here?');
-    return MoviesViewModel(movies: []);
+    return MoviesViewModel();
   }
 }

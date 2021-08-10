@@ -10,11 +10,24 @@ class MoviesScreen extends Screen {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: TextButton(
-        child: Text("Load Movies"),
-        onPressed: onLoadMoviesTap as void Function()?,
-      ),
-    );
+    return Scaffold(
+        appBar: new AppBar(
+          title: Text("Clean Architecture Movies"),
+        ),
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("See what's playing in a theater near you"),
+              TextButton(
+                child: Text("Fetch Movies"),
+                onPressed: onLoadMoviesTap as void Function()?,
+              ),
+            ],
+          ),
+        ));
   }
 }

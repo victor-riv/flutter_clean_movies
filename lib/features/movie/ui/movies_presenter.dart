@@ -27,6 +27,6 @@ class MoviesPresenter
     // Look into converting the loadMoviesPipe to a Pipe<MoviesEvent> like in deposit_check_event bc it doesnt let me use send here.
 
     // Send event through load movies pipe
-    // bloc.loadMoviesPipe.send();
+    // bloc.loadMoviesPipe.;
   }
 }

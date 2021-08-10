@@ -1,6 +1,7 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter_clean_movies/features/movie/api/movies_service.dart';
 import 'package:flutter_clean_movies/features/movie/bloc/movies_usecase.dart';
+import 'package:flutter_clean_movies/features/movie/model/movies_list_entity.dart';
 import 'package:flutter_clean_movies/features/movie/model/movies_view_model.dart';
 
 class MoviesBloc extends Bloc {
@@ -25,7 +26,7 @@ class MoviesBloc extends Bloc {
   }
 
   void loadMoviesHandler() {
-    // _moviesUseCase.loadMovies();
+    _moviesUseCase.loadMovies();
   }
 
   @override
