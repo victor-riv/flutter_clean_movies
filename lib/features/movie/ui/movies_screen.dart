@@ -4,9 +4,9 @@ import 'package:flutter_clean_movies/features/movie/model/movies_view_model.dart
 
 class MoviesScreen extends Screen {
   final MoviesViewModel? viewModel;
-  final Function? onLoadMoviesTap;
+  final Function? navigateToNowPlayingMovies;
 
-  MoviesScreen({this.onLoadMoviesTap, this.viewModel});
+  MoviesScreen({this.navigateToNowPlayingMovies, this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MoviesScreen extends Screen {
               Text("See what's playing in a theater near you"),
               TextButton(
                 child: Text("Fetch Movies"),
-                onPressed: onLoadMoviesTap as void Function()?,
+                onPressed: navigateToNowPlayingMovies as void Function()?,
               ),
             ],
           ),
