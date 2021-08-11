@@ -10,16 +10,16 @@ class MovieEntity extends Entity {
   final bool adult;
   final String overview;
   final String releaseDate;
-  final List<int> genreIds;
-  final int id;
+  final List<dynamic> genreIds;
+  final num id;
   final String originalTitle;
   final String originalLanguage;
   final String title;
   final String backdropPath;
-  final int popularity;
-  final int voteCount;
+  final num popularity;
+  final num voteCount;
   final bool video;
-  final int voteAverage;
+  final num voteAverage;
 
   MovieEntity(
       {errors,
@@ -27,16 +27,16 @@ class MovieEntity extends Entity {
       bool? adult,
       String? overview,
       String? releaseDate,
-      List<int>? genreIds,
-      int? id,
+      List<dynamic>? genreIds,
+      num? id,
       String? originalTitle,
       String? originalLanguage,
       String? title,
       String? backdropPath,
-      int? popularity,
-      int? voteCount,
+      num? popularity,
+      num? voteCount,
       bool? video,
-      int? voteAverage})
+      num? voteAverage})
       : posterPath = posterPath ?? '',
         adult = adult ?? false,
         overview = overview ?? '',
@@ -78,16 +78,16 @@ class MovieEntity extends Entity {
       bool? adult,
       String? overview,
       String? releaseDate,
-      List<int>? genreIds,
-      int? id,
+      List<dynamic>? genreIds,
+      num? id,
       String? originalTitle,
       String? originalLanguage,
       String? title,
       String? backdropPath,
-      int? popularity,
-      int? voteCount,
+      num? popularity,
+      num? voteCount,
       bool? video,
-      int? voteAverage}) {
+      num? voteAverage}) {
     return MovieEntity(
         posterPath: posterPath ?? this.posterPath,
         adult: adult ?? this.adult,

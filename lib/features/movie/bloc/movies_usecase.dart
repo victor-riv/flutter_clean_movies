@@ -20,19 +20,17 @@ class MoviesUseCase extends UseCase {
 
   // What happens when this use case first gets created
   void create() async {
-    _scope = ExampleLocator().repository.containsScope<MovieEntity>();
+    _scope = ExampleLocator().repository.containsScope<MoviesEntityModelList>();
     if (_scope == null) {
-      final newMoviesEntity = MovieEntity();
-
-      _scope = ExampleLocator()
-          .repository
-          .create<MovieEntity>(newMoviesEntity, _notifySubscribers);
+      _scope = ExampleLocator().repository.create<MoviesEntityModelList>(
+          MoviesEntityModelList(moviesEntityModelList: []), _notifySubscribers);
     } else {
       _scope!.subscription = _notifySubscribers;
     }
 
     //  Not really sure what is going on here
-    final entity = ExampleLocator().repository.get<MovieEntity>(_scope!);
+    final entity =
+        ExampleLocator().repository.get<MoviesEntityModelList>(_scope!);
     _viewModelCallBack(buildViewModel(entity));
   }
 
@@ -44,8 +42,7 @@ class MoviesUseCase extends UseCase {
   // Logic to fetch movie from API, BUT going through the service adapter
   void loadMovies() async {
     print('Inside movie use case loadMovies');
-    final entity =
-        ExampleLocator().repository.get<MoviesEntityModelList>(_scope!);
+
     await ExampleLocator()
         .repository
         .runServiceAdapter(_scope!, MoviesServiceAdapter());

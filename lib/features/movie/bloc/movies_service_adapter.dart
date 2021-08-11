@@ -9,10 +9,19 @@ class MoviesServiceAdapter extends ServiceAdapter<MoviesEntityModelList,
   MoviesServiceAdapter() : super(MoviesService());
 
   @override
-  MoviesEntityModelList createEntity(MoviesEntityModelList initialEntity,
+  MoviesEntityModelList createEntity(
+      MoviesEntityModelList moviesEntityModelList,
       MoviesServiceResponseModel responseModel) {
     print('Hello there partner');
     print(responseModel);
-    throw UnimplementedError();
+
+    final test = moviesEntityModelList.merge(
+            moviesEntityModelList: responseModel.moviesModelList)
+        as MoviesEntityModelList;
+
+    return test;
+    // return moviesEntityModelList.merge(
+    //         moviesEntityModelList: responseModel.moviesModelList)
+    //     as MoviesEntityModelList;
   }
 }

@@ -14,7 +14,8 @@ class MoviesPresenter
     print('Presenter was called!');
     return MoviesScreen(
         viewModel: viewModel,
-        navigateToNowPlayingMovies: () => _navigateToNowPlayingMovies(context));
+        navigateToNowPlayingMovies: () =>
+            _navigateToNowPlayingMovies(context, bloc));
   }
 
   @override
@@ -23,9 +24,11 @@ class MoviesPresenter
     return bloc.moviesViewModelPipe.receive;
   }
 
-  void _navigateToNowPlayingMovies(BuildContext context) {
+  void _navigateToNowPlayingMovies(BuildContext context, MoviesBloc bloc) {
     print('_onLoadMoviesTap callback was executed');
-    CFRouterScope.of(context).push(MoviesRouter.nowPlaying);
+    bloc.loadMoviesPipe.launch();
+
+    // CFRouterScope.of(context).push(MoviesRouter.nowPlaying);
     // Look into converting the loadMoviesPipe to a Pipe<MoviesEvent> like in deposit_check_event bc it doesnt let me use send here.
 
     // Send event through load movies pipe
