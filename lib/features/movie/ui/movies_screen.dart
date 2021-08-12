@@ -40,24 +40,87 @@ Widget HomeView(Function? navigateToNowPlayingMovies) {
 }
 
 Widget MoviesList(List<MovieEntity> movies) {
-  return ListView.builder(
-      itemCount: movies.length,
-      itemBuilder: (context, index) {
-        final movie = movies[index];
+  return new ListView.builder(
+    itemBuilder: (context, index) => getMovieCard(movies[index]),
+    itemCount: movies.length,
+    padding: new EdgeInsets.symmetric(vertical: 16.0),
+  );
+}
 
-        return ListTile(
-          contentPadding: const EdgeInsets.all(10),
-          leading: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        "https://image.tmdb.org/t/p/original/${movie.posterPath}")),
-                borderRadius: BorderRadius.circular(6)),
-            width: 50,
-            height: 100,
-          ),
-          title: Text(movie.originalTitle),
-        );
-      });
+Widget getMovieCard(MovieEntity movie) {
+  final thumbnail = Container(
+      margin: new EdgeInsets.symmetric(vertical: 16.0),
+      alignment: FractionalOffset.centerLeft,
+      child: new Image(
+          image: new NetworkImage(
+              "https://image.tmdb.org/t/p/original/${movie.posterPath}"),
+          height: 92.0,
+          width: 92.0));
+
+  final cardContent = new Container(
+    margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+    constraints: new BoxConstraints.expand(),
+    child: new Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        new Container(height: 4.0),
+        new Text(
+          movie.originalTitle,
+          style: TextStyle(
+              color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600),
+        ),
+        new Container(height: 10.0),
+        // new Text("Placeholder"),
+        new Container(
+            margin: new EdgeInsets.symmetric(vertical: 8.0),
+            height: 2.0,
+            width: 18.0,
+            color: new Color(0xff00c6ff)),
+        new Row(
+          children: <Widget>[
+            new Container(width: 8.0),
+            new Text(
+              movie.popularity.toString(),
+              style: TextStyle(
+                  color: Color(0xffb6b2df),
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w400),
+            ),
+            new Container(width: 24.0),
+            new Container(width: 8.0),
+            new Text(
+              movie.voteAverage.toString(),
+              style: TextStyle(
+                  color: Color(0xffb6b2df),
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+
+  final card = Container(
+    height: 124.0,
+    margin: new EdgeInsets.only(left: 46.0),
+    decoration: BoxDecoration(
+        color: new Color(0xFF333366),
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(8.0),
+        boxShadow: [
+          BoxShadow(
+              blurRadius: 10.0,
+              color: Colors.black12,
+              offset: Offset(0.0, 10.0))
+        ]),
+    child: cardContent,
+  );
+
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+    child: Stack(
+      children: [card, thumbnail],
+    ),
+  );
 }
