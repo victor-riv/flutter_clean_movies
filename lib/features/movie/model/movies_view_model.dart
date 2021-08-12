@@ -3,13 +3,9 @@ import 'package:flutter_clean_movies/features/movie/model/movie_entity.dart';
 
 class MoviesViewModel extends ViewModel {
   final List<MovieEntity> movies;
-  final serviceStatus;
 
-  MoviesViewModel(
-      {this.movies = const [], this.serviceStatus = ServiceStatus.unknown});
+  MoviesViewModel({this.movies = const []});
 
   @override
-  List<Object> get props => [movies, serviceStatus];
+  List<Object> get props => [movies];
 }
-
-enum ServiceStatus { success, invalid, unknown }

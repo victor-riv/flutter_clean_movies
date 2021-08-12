@@ -12,16 +12,8 @@ class MoviesServiceAdapter extends ServiceAdapter<MoviesEntityModelList,
   MoviesEntityModelList createEntity(
       MoviesEntityModelList moviesEntityModelList,
       MoviesServiceResponseModel responseModel) {
-    print('Hello there partner');
-    print(responseModel);
-
-    final test = moviesEntityModelList.merge(
+    return moviesEntityModelList.merge(
             moviesEntityModelList: responseModel.moviesModelList)
         as MoviesEntityModelList;
-
-    return test;
-    // return moviesEntityModelList.merge(
-    //         moviesEntityModelList: responseModel.moviesModelList)
-    //     as MoviesEntityModelList;
   }
 }

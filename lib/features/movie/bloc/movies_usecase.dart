@@ -1,7 +1,6 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
 import 'package:flutter_clean_movies/features/movie/bloc/movies_service_adapter.dart';
-import 'package:flutter_clean_movies/features/movie/model/movie_entity.dart';
 import 'package:flutter_clean_movies/features/movie/model/movies_list_entity.dart';
 import 'package:flutter_clean_movies/features/movie/model/movies_view_model.dart';
 import 'package:flutter_clean_movies/locator.dart';
@@ -49,6 +48,10 @@ class MoviesUseCase extends UseCase {
   }
 
   MoviesViewModel buildViewModel(entity) {
-    return MoviesViewModel();
+    if (entity.moviesEntityModelList.isEmpty) {
+      return MoviesViewModel();
+    } else {
+      return MoviesViewModel(movies: entity.moviesEntityModelList);
+    }
   }
 }

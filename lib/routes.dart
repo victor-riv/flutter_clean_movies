@@ -10,10 +10,6 @@ abstract class MoviesRouter {
       case initialRoute:
         return MoviesFeatureWidget();
 
-      // TODO: Replace this with new MoviesListWidgetFeature
-      case nowPlaying:
-        return MoviesFeatureWidget();
-
       default:
         return MoviesFeatureWidget();
     }
